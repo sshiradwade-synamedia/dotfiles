@@ -1,0 +1,25 @@
+{
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "labels": {
+      "app": "mocklp",
+      "location": "labs",
+      "env": "qa-perf"
+    },
+    "name": "mocklp",
+    "namespace": "vmr"
+  },
+  "spec": {
+    "ports": [
+      {
+        "nodePort": 9280,
+        "port": 8080
+      }
+    ],
+    "selector": {
+      "app": "mocklp"
+    },
+    "type": "LoadBalancer"
+  }
+}

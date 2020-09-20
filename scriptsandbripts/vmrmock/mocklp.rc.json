@@ -1,0 +1,57 @@
+{
+  "kind": "ReplicationController",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "mocklp",
+    "namespace": "vmr"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "app": "mocklp"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "mocklp"
+        }
+      },
+      "spec": {
+        "nodeSelector": { 
+              "riok8s": "true"
+        },
+        "containers": [
+          {
+            "name": "mocklp",
+            "image": "10.1.137.10:5000/rio_release/mocklp:latest",
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "env": [
+              {
+                "name": "ACTIVE_PATH",
+                "value": "active-dummy"
+              },
+	      {
+                "name": "RECON_PATH",
+                "value": "recon-dummy"
+              },
+              {
+                "name": "ARCHIVE_PATH",
+                "value": "archive-dummy"
+              }
+            ],
+            "command": [
+              "/bin/mocklp",
+	      "-timeNow=true",
+	      "-stream=100",
+              "-seed=/bin/seed.xml"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

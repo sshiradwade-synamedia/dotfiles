@@ -1,0 +1,61 @@
+{
+  "kind": "ReplicationController",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "mockstorage",
+    "namespace": "rio"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "app": "mockstorage"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "mockstorage"
+        }
+      },
+      "spec": {
+        "nodeSelector": {
+              "riok8s": "true"
+        },
+        "containers": [
+          {
+            "name": "mockstorage",
+            "image": "10.1.137.10:5000/rio_release/mock-storage-service:latest",
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "env": [
+              {
+                "name": "SAVE_SEGMENT",
+                "value": "false"
+              },
+              {
+                "name": "ACTIVE_BUCKET",
+                "value": "/rio/active"
+              },
+              {
+                "name": "ARCHIVE_BUCKET",
+                "value": "/rio/archive"
+              },
+              {
+                "name": "RECON_BUCKET",
+                "value": "/rio/recon"
+
+              }
+            ],
+            "command": [
+              "/root/rio-mock-storage-service",
+              "-fanoutAddr=0.0.0.0:9002",
+              "-nonfanoutAddr=0.0.0.0:9006"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

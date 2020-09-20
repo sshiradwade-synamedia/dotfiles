@@ -1,0 +1,1 @@
+oc apply -f mocklp-service.json && oc apply -f mocklp.rc.json && oc apply -f mockstorage-rc.json && echo "wait.." && sleep 10 && oc get pods | grep mocks | awk '{print $1}' | xargs -n1 oc describe pod | grep IP | awk '{print $2}'

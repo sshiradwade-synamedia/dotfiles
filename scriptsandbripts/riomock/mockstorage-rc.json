@@ -23,7 +23,7 @@
         "containers": [
           {
             "name": "mockstorage",
-            "image": "10.1.137.10:5000/rio_release/mock-storage-service:latest",
+            "image": "10.1.137.10:5000/rio_release/mock-storage-service:syna_tip",
             "ports": [
               {
                 "containerPort": 8080

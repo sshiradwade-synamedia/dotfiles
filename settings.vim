@@ -4,6 +4,7 @@ set formatoptions-=cro                  " Stop newline continution of comments
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set nowrap                              " Display long lines as just one line
+set whichwrap+=<,>,[,],h,l
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
 set fileencoding=utf-8                  " The encoding written to file
@@ -35,6 +36,15 @@ set timeoutlen=100                      " By default timeoutlen is 1000 ms
 set clipboard=unnamedplus               " Copy paste between vim and everything else
 set incsearch
 set guifont=Fira\ Code\ Nerd\ Font
+
+" New stuff
+" set notimeout nottimeout
+" set scrolloff=1
+" set sidescroll=1
+" set sidescrolloff=1
+" set display+=lastline
+" set backspace=eol,start,indent
+" set nostartofline
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " set mmp=1300
 " set autochdir                           " Your working directory will always be the same as your working directory
@@ -61,3 +71,8 @@ set spell spelllang=en_us
 " Reload on change file
 :au FileChangedShell * echo "Warning: File changed on disk"
 
+" Mouse
+:set mouse=a
+
+" Calulator
+nnoremap <LEADER>a :call Calc()<CR>
